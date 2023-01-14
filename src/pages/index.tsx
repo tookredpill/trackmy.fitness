@@ -1,9 +1,11 @@
 import { Inter } from "@next/font/google";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
     <>
       <Head>
@@ -12,8 +14,30 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1 className={`${inter.className} text-2xl`}>Hello, World!</h1>
+      <main className={inter.className}>
+        {session ? (
+          <>
+            <span>Signed in as {session.user?.email}</span>
+            <button
+              onClick={() => {
+                signOut().catch(console.error);
+              }}
+            >
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <>
+            <span>Not signed in!</span>
+            <button
+              onClick={() => {
+                signIn().catch(console.error);
+              }}
+            >
+              Sign In
+            </button>
+          </>
+        )}
       </main>
     </>
   );
