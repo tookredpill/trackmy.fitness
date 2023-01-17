@@ -4,13 +4,13 @@
 # Next.js artifacts
 /.next/
 /out/
+next-env.d.ts
 
 # Vercel artifacts
 .vercel
 
 # TSC artifacts
 *.tsbuildinfo
-next-env.d.ts
 
 # Build output
 /build
