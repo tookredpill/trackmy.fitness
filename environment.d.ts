@@ -9,5 +9,7 @@ declare namespace NodeJS {
     NEXTAUTH_URL: string;
     // Must be set when running in production. Automatically generated during development.
     NEXTAUTH_SECRET?: string;
+    // Only exists during development.
+    PORT?: string;
   }
 }
